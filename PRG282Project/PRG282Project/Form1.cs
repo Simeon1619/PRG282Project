@@ -31,7 +31,7 @@ namespace PRG282Project
             int age= int.Parse(txtAge.Text);
             int studentID= int.Parse(txtSID.Text);
 
-            handler.Register(studentID,fname,age,courseID);
+            handler.Register(studentID, fname, courseID, age, dgvStudent);
             //studentID, string fname, int age, string courseID
             txtName.Clear();
             txtCourse.Clear();
@@ -61,7 +61,8 @@ namespace PRG282Project
 
         private void btn_Del_Click(object sender, EventArgs e)
         {
-            //frm.ShowDialog();
+            int studentID = int.Parse(txtSID.Text);
+            handler.Delete(studentID, dgvStudent);
         }
 
         private void btn_Exit_Click(object sender, EventArgs e)

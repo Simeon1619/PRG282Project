@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.LinkLabel;
 
 namespace PRG282Project
 {
@@ -21,12 +22,18 @@ namespace PRG282Project
         }
         string studentFile = @"students.txt";
 
-        public void Register(int studentID, string fname, int age, string courseID)
+        public void Register(int studentID, string fname, string courseID, int age, DataGridView dgvStudent)
         {
             
-            File.AppendAllText(studentFile, Environment.NewLine + studentID + "," + fname + "," + courseID + "," + age);
-            
+            // Add to DataGridView
+            dgvStudent.Rows.Add(studentID, fname, courseID, age);
+
+            // Update the text file
+            UpdateFileFromDataGrid(dgvStudent);
+           
+
         }
+
         public void Update(int studentID, string fname, string courseID, int age, DataGridView dgvStudent)
         {
             bool found = false;
@@ -44,6 +51,7 @@ namespace PRG282Project
                         if (!string.IsNullOrEmpty(fname))
                         {
                             row.Cells["FullName"].Value = fname;
+                            
                         }
 
                         if (age != 0)
@@ -90,38 +98,35 @@ namespace PRG282Project
             File.WriteAllLines("students.txt", lines);
         }
 
-        public void Delete(int studentID, string fname, int age, string courseID)
+        public void Delete(int studentID, DataGridView dgvStudent)
         {
-            if (string.IsNullOrEmpty(fname))
+            
+            bool found = false;
+
+            foreach (DataGridViewRow row in dgvStudent.Rows)
             {
-                MessageBox.Show("Please enter a student record to remove","Please input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-            }
-            try
-            {
-                var lines = File.ReadAllLines(studentFile);
-                var updatedLines = lines.Where(line => !line.StartsWith(fname + ",")).ToArray();
-
-                
-                if (lines.Length == updatedLines.Length)
+                if (row.Cells["StudentNumber"].Value != null && int.TryParse(row.Cells["StudentNumber"].Value.ToString(), out int studentNumber))
                 {
-                    MessageBox.Show("Student not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                   
-                    //File.WriteAllLines(file, updatedLines);
+                    if (studentNumber == studentID)
+                    {
+                        dgvStudent.Rows.Remove(row);
+                        found = true;
 
-                    
-                    //LoadUsers();
+                  
+                        UpdateFileFromDataGrid(dgvStudent);
 
-                    MessageBox.Show("Record deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Student record deleted successfully.", "Delete Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        break;
+                    }
                 }
             }
-            catch (Exception e)
+
+            if (!found)
             {
-                MessageBox.Show($"Error: {e.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Student ID not found.", "Delete Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
+
         }
 
         public void Search(DataGridView dgvStudent, int studentID) 
