@@ -79,11 +79,20 @@ namespace PRG282Project
             dgvStudent.Columns.Add("Age", "Age"); 
               
             dataGrid.LoadUsers(dgvStudent);          
+
         }
 
         private void txtSID_TextChanged(object sender, EventArgs e)
         {
             //handler.Search(dgvStudent, int.Parse(txtSID.Text));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        { 
+            handler.GenerateSummary(dgvStudent, lblTotalStudents, lblAverageAge);
+            lblAverageAge.Visible = true;
+            lblTotalStudents.Visible = true;
+
         }
     }
 }

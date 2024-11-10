@@ -128,7 +128,33 @@ namespace PRG282Project
             
 
         }
+        public void GenerateSummary(DataGridView dgvStudent, Label lblTotalStudents, Label lblAverageAge)
+        {
+            int totalStudents = dgvStudent.Rows.Count - 1; // Excluding the new row
+            int sumAge = 0;
+            int studentCount = 0;
 
+            foreach (DataGridViewRow row in dgvStudent.Rows)
+            {
+                if (!row.IsNewRow && int.TryParse(row.Cells["Age"].Value.ToString(), out int age))
+                {
+                    sumAge += age;
+                    studentCount++;
+                }
+            }
+
+            double averageAge = (double)sumAge / studentCount;
+
+            // Display results on the form
+            lblTotalStudents.Text = $"Total Students: {totalStudents}";
+            lblAverageAge.Text = $"Average Age: {averageAge:F2}";
+
+            // Save to summary.txt
+            string summary = $"Total Students: {totalStudents}\nAverage Age: {averageAge:F2}";
+            File.WriteAllText("summary.txt", summary);
+
+            MessageBox.Show("Summary report generated and saved to summary.txt", "Summary Report", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         public void Search(DataGridView dgvStudent, int studentID) 
         {
             //DataTable dataTable = new DataTable();

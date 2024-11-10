@@ -30,12 +30,10 @@ namespace PRG282Project
                     var data = line.Split(',');
                     dgvStudent.Rows.Add(data);
                 }
-                MessageBox.Show("gay");
             }
             else
             {
                 File.Create(studentFile);
-                MessageBox.Show("leesss soos kak");
             }
 
         }

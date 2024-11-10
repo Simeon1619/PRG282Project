@@ -45,12 +45,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btn_Exit = new System.Windows.Forms.Button();
             this.dgvStudent = new System.Windows.Forms.DataGridView();
+            this.btnReport = new System.Windows.Forms.Button();
+            this.lblTotalStudents = new System.Windows.Forms.Label();
+            this.lblAverageAge = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStudent)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(51, 328);
+            this.btnCreate.Location = new System.Drawing.Point(49, 328);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(106, 30);
             this.btnCreate.TabIndex = 0;
@@ -60,7 +63,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(318, 330);
+            this.btnUpdate.Location = new System.Drawing.Point(294, 330);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(106, 27);
             this.btnUpdate.TabIndex = 1;
@@ -70,7 +73,7 @@
             // 
             // btnRead
             // 
-            this.btnRead.Location = new System.Drawing.Point(183, 330);
+            this.btnRead.Location = new System.Drawing.Point(170, 330);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(106, 27);
             this.btnRead.TabIndex = 2;
@@ -80,7 +83,7 @@
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(458, 330);
+            this.btnDel.Location = new System.Drawing.Point(418, 330);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(106, 27);
             this.btnDel.TabIndex = 3;
@@ -165,7 +168,7 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.label4.Location = new System.Drawing.Point(389, 45);
+            this.label4.Location = new System.Drawing.Point(208, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(162, 31);
             this.label4.TabIndex = 13;
@@ -199,11 +202,44 @@
             this.dgvStudent.Size = new System.Drawing.Size(423, 150);
             this.dgvStudent.TabIndex = 20;
             // 
+            // btnReport
+            // 
+            this.btnReport.Location = new System.Drawing.Point(489, 377);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(129, 23);
+            this.btnReport.TabIndex = 21;
+            this.btnReport.Text = "Generate Report";
+            this.btnReport.UseVisualStyleBackColor = true;
+            this.btnReport.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblTotalStudents
+            // 
+            this.lblTotalStudents.AutoSize = true;
+            this.lblTotalStudents.Location = new System.Drawing.Point(489, 407);
+            this.lblTotalStudents.Name = "lblTotalStudents";
+            this.lblTotalStudents.Size = new System.Drawing.Size(76, 13);
+            this.lblTotalStudents.TabIndex = 22;
+            this.lblTotalStudents.Text = "Total Students";
+            this.lblTotalStudents.Visible = false;
+            // 
+            // lblAverageAge
+            // 
+            this.lblAverageAge.AutoSize = true;
+            this.lblAverageAge.Location = new System.Drawing.Point(489, 430);
+            this.lblAverageAge.Name = "lblAverageAge";
+            this.lblAverageAge.Size = new System.Drawing.Size(89, 13);
+            this.lblAverageAge.TabIndex = 23;
+            this.lblAverageAge.Text = "The average age";
+            this.lblAverageAge.Visible = false;
+            // 
             // frmStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 545);
+            this.ClientSize = new System.Drawing.Size(655, 525);
+            this.Controls.Add(this.lblAverageAge);
+            this.Controls.Add(this.lblTotalStudents);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.dgvStudent);
             this.Controls.Add(this.btn_Exit);
             this.Controls.Add(this.label6);
@@ -248,6 +284,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btn_Exit;
         private System.Windows.Forms.DataGridView dgvStudent;
+        private System.Windows.Forms.Button btnReport;
+        private System.Windows.Forms.Label lblTotalStudents;
+        private System.Windows.Forms.Label lblAverageAge;
     }
 }
 
